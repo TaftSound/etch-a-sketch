@@ -1,7 +1,6 @@
 const container = document.getElementById('grid-container');
 let divsPerSide = 16;
-let containerHeight = container.getAttribute('height');
-let columnArray = [];
+let gridArray = [''];
 
 function createEtchDiv(columnNumber, rowNumber) {
     let div = document.createElement('div');
@@ -10,21 +9,28 @@ function createEtchDiv(columnNumber, rowNumber) {
     div.style.gridRow = rowNumber;
     container.appendChild(div);
     div.style.backgroundColor = 'black';
-    div.style.opacity = 0.1;
+    let divOpacity = 0.1;
+    div.style.opacity = divOpacity;
+    divPlacement = `${columnNumber} + ${rowNumber}`;
+    return div;
 };
 
-divTest = createEtchDiv(1, 1);
-divTest = createEtchDiv(2, 2);
+function createDivGrid() {
+    for (let columnNumber = 1; columnNumber <= divsPerSide; columnNumber++) {
+        let columnArray = [''];
+        gridArray.push(columnArray);
+        for (let rowNumber = 1; rowNumber <= divsPerSide; rowNumber++) {
+            columnArray.push(createEtchDiv(columnNumber, rowNumber));
+        }
+    }
+}
 
-// function createDivGrid() {
+createDivGrid();
 
-// }
+let testDiv = gridArray[4] [5];
+testDiv.style.opacity = 0.5;
 
-// function createDivColumn() {
-//     for (let i = 0; i < divsPerSide; i++) {
-//         columnArray.push()
-//     }
-// }
+
 // Need to create 16 x 16 grid
     // For loop to create one column of divs for each divsPerSide,
         // Nested for loop to create divsPerSide number of divs in each
