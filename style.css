@@ -1,0 +1,8 @@
+#grid-container {
+    display: grid;
+    height: 80vh;
+    width: 80vh;
+    border-color: olive;
+    border-style: solid;
+    border-radius: 5px;
+}
