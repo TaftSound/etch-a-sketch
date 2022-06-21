@@ -1,9 +1,35 @@
 const container = document.getElementById('grid-container');
 let divsPerSide = 16;
+let containerHeight = container.getAttribute('height');
+let columnArray = [];
+
+function createEtchDiv(columnNumber, rowNumber) {
+    let div = document.createElement('div');
+    div.classList.add('etch-div');
+    div.style.gridColumn = columnNumber;
+    div.style.gridRow = rowNumber;
+    container.appendChild(div);
+    div.style.backgroundColor = 'black';
+    div.style.opacity = 0.1;
+};
+
+divTest = createEtchDiv(1, 1);
+divTest = createEtchDiv(2, 2);
+
+// function createDivGrid() {
+
+// }
+
+// function createDivColumn() {
+//     for (let i = 0; i < divsPerSide; i++) {
+//         columnArray.push()
+//     }
+// }
 // Need to create 16 x 16 grid
-    // For loop to create one column of divs for each divsPerSide, classList.add('columnNumber')
+    // For loop to create one column of divs for each divsPerSide,
         // Nested for loop to create divsPerSide number of divs in each
-        // column, .createElement(), .appendChild(), .classList.add()
+        // column, .createElement(), .appendChild(), .classList.add(),
+        // need to add column number i, and row number j to each one.
 // Need to set proportions to always be a square
     // height = 80vh, width = 80vh
 // Need to set up hover function to change the color of the divs
@@ -40,7 +66,3 @@ let divsPerSide = 16;
     // use a function with for loop to delete all existing divs
     // re-run initial function that creates grid layout
 // Implement increased darkening for each additional pass over a div
-
-function createGrid() {
-
-}
