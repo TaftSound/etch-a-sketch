@@ -1,5 +1,6 @@
 const container = document.getElementById('grid-container');
 const resetButton = document.getElementById('reset');
+const colorToggleButton = document.getElementById('color-draw');
 let divsPerSide = 16;
 let gridArray = [];
 let isDrawing = false;
@@ -10,6 +11,7 @@ let colorDraw = false;
 createDivGrid();
 addDrawingListeners();
 resetButton.addEventListener('click', resetSketch);
+colorToggleButton.addEventListener('click', toggleColorDraw);
 
 
 
@@ -38,42 +40,20 @@ function createDivGrid() {
 function addDrawingListeners() {
     window.addEventListener('mousedown', () => { isDrawing = true; });
     window.addEventListener('mouseup', () => {
-        if (isDrawing) {
-            isDrawing = false;
-        }
+        if (isDrawing) { isDrawing = false; }
     });
     for (column of gridArray) {
         for (row of column) {
-            if (colorDraw) {
-                row.addEventListener('mouseover', (event) => { 
-                    if (isDrawing) {
-                        drawWithColor(event.target);
-                    }
-                });
-            }
-            else {
-                row.addEventListener('mouseover', (event) => { 
-                    if (isDrawing) {
-                        draw(event.target);
-                    }
-                });
-            }
+            row.addEventListener('mouseover', (event) => { 
+                if (isDrawing) { draw(event.target); }
+            });
         }
     }
 }
 
 function draw(currentDiv) {
     let currentOpacity = currentDiv.style.opacity;
-    if (currentOpacity > 0) {
-        currentOpacity = +currentOpacity - 0.1;
-        currentDiv.style.opacity = currentOpacity;
-    }
-}
-
-function drawWithColor(currentDiv) {
-    let currentOpacity = currentDiv.style.opacity;
-    console.log(currentOpacity);
-    if (currentOpacity == 1) {
+    if (colorDraw && currentOpacity == 1) {
         currentDiv.style.backgroundColor = randomRgbColor();
     }
     if (currentOpacity > 0) {
@@ -98,6 +78,12 @@ function resetSketch() {
             row.style.opacity = 1.0;
         }
     }
+}
+
+function toggleColorDraw() {
+    resetSketch();
+    if (colorDraw) { colorDraw = false; }
+    else if (!colorDraw) { colorDraw = true; }
 }
 
 
