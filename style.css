@@ -7,10 +7,16 @@ body {
     margin: 0;
 }
 
+#top {
+    height: 5vh;
+}
+
 #bottom {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10rem;
+    height: 15vh;
 }
 
 #grid-container {
@@ -28,14 +34,7 @@ body {
     border-radius: 5px;
 }
 
-#top {
-    height: 5vh;
-}
-
-#bottom {
-    height: 15vh;
-}
-
 button {
-    
+    width: 6em;
+    height: 2em;
 }
