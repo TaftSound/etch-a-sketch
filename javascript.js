@@ -1,8 +1,17 @@
 const container = document.getElementById('grid-container');
+const resetButton = document.getElementById('reset');
 let divsPerSide = 16;
 let gridArray = [];
 let isDrawing = false;
 let colorDraw = false;
+
+
+
+createDivGrid();
+addDrawingListeners();
+resetButton.addEventListener('click', resetSketch);
+
+
 
 function createEtchDiv(columnNumber, rowNumber) {
     let div = document.createElement('div');
@@ -82,12 +91,14 @@ function randomRgbColor() {
     return `rgb(${randomColorValue()}, ${randomColorValue()}, ${randomColorValue()})`;
 }
 
-
-
-createDivGrid();
-addDrawingListeners();
-
-
+function resetSketch() {
+    for (column of gridArray) {
+        for (row of column) {
+            row.style.backgroundColor = 'rgb(256, 256, 256)';
+            row.style.opacity = 1.0;
+        }
+    }
+}
 
 
 

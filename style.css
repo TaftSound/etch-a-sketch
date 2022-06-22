@@ -7,6 +7,12 @@ body {
     margin: 0;
 }
 
+#bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #grid-container {
     display: grid;
     height: 80vh;
@@ -28,4 +34,8 @@ body {
 
 #bottom {
     height: 15vh;
+}
+
+button {
+    
 }
