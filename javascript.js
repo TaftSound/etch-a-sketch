@@ -1,6 +1,7 @@
 const container = document.getElementById('grid-container');
 let divsPerSide = 16;
-let gridArray = [''];
+let gridArray = [];
+let isDrawing = false;
 
 function createEtchDiv(columnNumber, rowNumber) {
     let div = document.createElement('div');
@@ -9,15 +10,14 @@ function createEtchDiv(columnNumber, rowNumber) {
     div.style.gridRow = rowNumber;
     container.appendChild(div);
     div.style.backgroundColor = 'black';
-    let divOpacity = 0.1;
-    div.style.opacity = divOpacity;
+    div.style.opacity = 0.0;
     divPlacement = `${columnNumber} + ${rowNumber}`;
     return div;
 };
 
 function createDivGrid() {
     for (let columnNumber = 1; columnNumber <= divsPerSide; columnNumber++) {
-        let columnArray = [''];
+        let columnArray = [];
         gridArray.push(columnArray);
         for (let rowNumber = 1; rowNumber <= divsPerSide; rowNumber++) {
             columnArray.push(createEtchDiv(columnNumber, rowNumber));
@@ -25,10 +25,36 @@ function createDivGrid() {
     }
 }
 
-createDivGrid();
+function addDrawingListeners() {
+    window.addEventListener('mousedown', () => { isDrawing = true; });
+    window.addEventListener('mouseup', () => {
+        if (isDrawing) {
+            isDrawing = false;
+        }
+    });
+    for (column of gridArray) {
+        for (row of column) {
+            row.addEventListener('mouseover', (event) => { 
+                if (isDrawing) {
+                    drawOpacityChange(event.target);
+                }
+            });
+        }
+    }
+}
 
-let testDiv = gridArray[4] [5];
-testDiv.style.opacity = 0.5;
+function drawOpacityChange(currentDiv) {
+    let currentOpacity = currentDiv.style.opacity;
+    if (currentOpacity < 1) {
+        currentOpacity = +currentOpacity + 0.1;
+        currentDiv.style.opacity = currentOpacity;
+    }
+}
+
+createDivGrid();
+addDrawingListeners();
+
+
 
 
 // Need to create 16 x 16 grid
