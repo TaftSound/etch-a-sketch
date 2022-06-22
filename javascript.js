@@ -1,19 +1,17 @@
 const container = document.getElementById('grid-container');
 const resetButton = document.getElementById('reset');
 const colorToggleButton = document.getElementById('color-draw');
+const resolutionSlider = document.getElementById('resolution');
 let divsPerSide = 16;
 let gridArray = [];
 let isDrawing = false;
 let colorDraw = false;
 
 
-
 createDivGrid();
-addDrawingListeners();
 resetButton.addEventListener('click', resetSketch);
 colorToggleButton.addEventListener('click', toggleColorDraw);
-
-
+resolutionSlider.addEventListener('change', (event) => { changeResolution(event) });
 
 function createEtchDiv(columnNumber, rowNumber) {
     let div = document.createElement('div');
@@ -35,13 +33,21 @@ function createDivGrid() {
             columnArray.push(createEtchDiv(columnNumber, rowNumber));
         }
     }
+    addDrawingListeners();
+}
+
+function deleteDivGrid() {
+    for (column of gridArray) {
+        for (row of column) {
+            container.removeChild(row).remove();
+        }
+    }
+    gridArray = [];
 }
 
 function addDrawingListeners() {
     window.addEventListener('mousedown', () => { isDrawing = true; });
-    window.addEventListener('mouseup', () => {
-        if (isDrawing) { isDrawing = false; }
-    });
+    window.addEventListener('mouseup', () => { if (isDrawing) { isDrawing = false; } });
     for (column of gridArray) {
         for (row of column) {
             row.addEventListener('mouseover', (event) => { 
@@ -86,6 +92,11 @@ function toggleColorDraw() {
     else if (!colorDraw) { colorDraw = true; }
 }
 
+function changeResolution(event) {
+    deleteDivGrid();
+    divsPerSide = event.target.value;
+    createDivGrid();
+}
 
 
 // Check "pen drag" idea <- have a button that switches to this mode in a single 1x1 grid

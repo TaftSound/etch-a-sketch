@@ -13,6 +13,10 @@ body {
 
 #bottom {
     display: flex;
+    flex-direction: column;
+}
+#button-group {
+    display: flex;
     justify-content: center;
     align-items: center;
     gap: 10rem;
