@@ -117,11 +117,7 @@ function resetSketch() {
         // use .stroke() method on context to actually draw the path made
         // use .closePath() method on context to finish out the stroke <- research if/why is necessary
 
-
-// Add a button that will allow user to re-set state of divs
-    // use a for loop to iterate through divs, setting opacity of each to 0.1
 // Add a button that will allow user to replace grid with diff number divs
     // use a function to change divsPerSide value, set conditional limit at 100
     // use a function with for loop to delete all existing divs
     // re-run initial function that creates grid layout
-// Implement increased darkening for each additional pass over a div
