@@ -16,6 +16,8 @@ body {
     min-height: 25rem;
     min-width: 25rem;
     border-color: olive;
+    background-color: black;
+    overflow: hidden;
     border-style: solid;
     border-radius: 5px;
 }

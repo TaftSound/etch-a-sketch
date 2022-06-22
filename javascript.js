@@ -2,6 +2,7 @@ const container = document.getElementById('grid-container');
 let divsPerSide = 16;
 let gridArray = [];
 let isDrawing = false;
+let colorDraw = false;
 
 function createEtchDiv(columnNumber, rowNumber) {
     let div = document.createElement('div');
@@ -9,8 +10,8 @@ function createEtchDiv(columnNumber, rowNumber) {
     div.style.gridColumn = columnNumber;
     div.style.gridRow = rowNumber;
     container.appendChild(div);
-    div.style.backgroundColor = 'black';
-    div.style.opacity = 0.0;
+    div.style.backgroundColor = 'rgb(256, 256, 256)';
+    div.style.opacity = 1.0;
     divPlacement = `${columnNumber} + ${rowNumber}`;
     return div;
 };
@@ -34,22 +35,54 @@ function addDrawingListeners() {
     });
     for (column of gridArray) {
         for (row of column) {
-            row.addEventListener('mouseover', (event) => { 
-                if (isDrawing) {
-                    drawOpacityChange(event.target);
-                }
-            });
+            if (colorDraw) {
+                row.addEventListener('mouseover', (event) => { 
+                    if (isDrawing) {
+                        drawWithColor(event.target);
+                    }
+                });
+            }
+            else {
+                row.addEventListener('mouseover', (event) => { 
+                    if (isDrawing) {
+                        draw(event.target);
+                    }
+                });
+            }
         }
     }
 }
 
-function drawOpacityChange(currentDiv) {
+function draw(currentDiv) {
     let currentOpacity = currentDiv.style.opacity;
-    if (currentOpacity < 1) {
-        currentOpacity = +currentOpacity + 0.1;
+    if (currentOpacity > 0) {
+        currentOpacity = +currentOpacity - 0.1;
         currentDiv.style.opacity = currentOpacity;
     }
 }
+
+function drawWithColor(currentDiv) {
+    let currentOpacity = currentDiv.style.opacity;
+    console.log(currentOpacity);
+    if (currentOpacity == 1) {
+        currentDiv.style.backgroundColor = randomRgbColor();
+    }
+    if (currentOpacity > 0) {
+        currentOpacity = +currentOpacity - 0.1;
+        currentDiv.style.opacity = currentOpacity;
+    }
+}
+
+function randomColorValue() {
+    let randomNumber = Math.floor(Math.random() * (66) + 190);
+    return randomNumber;
+}
+
+function randomRgbColor() {
+    return `rgb(${randomColorValue()}, ${randomColorValue()}, ${randomColorValue()})`;
+}
+
+
 
 createDivGrid();
 addDrawingListeners();
@@ -57,23 +90,6 @@ addDrawingListeners();
 
 
 
-// Need to create 16 x 16 grid
-    // For loop to create one column of divs for each divsPerSide,
-        // Nested for loop to create divsPerSide number of divs in each
-        // column, .createElement(), .appendChild(), .classList.add(),
-        // need to add column number i, and row number j to each one.
-// Need to set proportions to always be a square
-    // height = 80vh, width = 80vh
-// Need to set up hover function to change the color of the divs
-    // use mousedown + mouseup listeners to only draw when holding clicked
-    // on mousedown, set isDrawing variable to true, mouseup sets to false
-    // set mousedown and mouseup to be activated on the global window
-    // Do the following inside for loop:
-        // set .mouseover listener on each individual div
-        // set initial div opacity property to 0.1
-        // when .mouseover is activated, if isDrawing === true set opacity += 0.1 
-        // unless div opacity is already 1.0; use .style.opacity = ''
-    // 
 
 // Check "pen drag" idea <- have a button that switches to this mode in a single 1x1 grid
     // use mousemove event within grid container to call drawLine() function
