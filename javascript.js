@@ -1,7 +1,7 @@
 const container = document.getElementById('grid-container');
 const resetButton = document.getElementById('reset');
 const colorToggleButton = document.getElementById('color-draw');
-const resolutionSlider = document.getElementById('resolution');
+const resolutionSlider = document.getElementById('resolution-slider');
 let divsPerSide = 16;
 let gridArray = [];
 let isDrawing = false;
@@ -88,8 +88,14 @@ function resetSketch() {
 
 function toggleColorDraw() {
     resetSketch();
-    if (colorDraw) { colorDraw = false; }
-    else if (!colorDraw) { colorDraw = true; }
+    if (colorDraw) { 
+        colorDraw = false;
+        colorToggleButton.classList.remove('toggle');
+    }
+    else if (!colorDraw) { 
+        colorDraw = true;
+        colorToggleButton.classList.add('toggle');
+    }
 }
 
 function changeResolution(event) {

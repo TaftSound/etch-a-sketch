@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-A-Sketch</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;700;900&display=swap" rel="stylesheet">
     <script src="./javascript.js" defer></script>
 </head>
 <body>
@@ -13,11 +19,13 @@
     <div id="grid-container"></div>
     <div id="bottom">
         <div id="slider-container">
-            <input type="range" min="16" max="100" value="16" id="resolution">
+            <input type="range" min="16" max="100" value="16" id="resolution-slider" name="resolution">
+            <label for="resolution">Resolution</label>
         </div>
         <div id="button-group">
             <button id="reset">Reset</button>
-            <button id="color-draw">Rainbow</button>
+            <div id="spacer"></div>
+            <button id="color-draw">Color</button>
         </div>
     </div>
 </body>
