@@ -1,7 +1,9 @@
-
-body {
+html, body {
     width: 100%;
     overflow-x: hidden;
+}
+
+body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
