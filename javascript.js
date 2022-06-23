@@ -104,23 +104,3 @@ function changeResolution(event) {
     createDivGrid();
 }
 
-
-// Check "pen drag" idea <- have a button that switches to this mode in a single 1x1 grid
-    // use mousemove event within grid container to call drawLine() function
-        // isDrawing boolean state to see if should actually draw
-    // use mousedown + mouseup listeners to only draw when holding clicked
-    // on mousedown, set isDrawing variable to true, mouseup sets to false
-    // get x and y on mousedown using .offsetX and .offsetY properties
-    // create drawing function:
-        // use getContext('2d') function to get drawing context in the div and store in variable
-        // use beginPath() method of CanvasRenderingContext2D on context
-        // set .strokeStyle property of context = 'black'
-        // use .moveTo(x, y) function on context to begin a new path
-        // use .lineTo(x, y) function on context to create a path from last point to current
-        // use .stroke() method on context to actually draw the path made
-        // use .closePath() method on context to finish out the stroke <- research if/why is necessary
-
-// Add a button that will allow user to replace grid with diff number divs
-    // use a function to change divsPerSide value, set conditional limit at 100
-    // use a function with for loop to delete all existing divs
-    // re-run initial function that creates grid layout
